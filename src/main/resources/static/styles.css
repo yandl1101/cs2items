@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    background-color: #feac00;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-image: url('CS2.jpg'); /* 替换为你的背景图片路径 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.search-container {
+    position: relative; /* 相对定位可以保留 */
+    display: flex; /* 使用 Flexbox */
+    justify-content: center; /* 水平居中对齐 */
+    width: 100%; /* 父容器的宽度 */
+}
+
+.search-box-container {
+    display: flex; /* 使用 Flexbox */
+    justify-content: center; /* 水平居中对齐 */
+    width: 100%; /* 父容器的宽度 */
+}
+
+.search-box {
+    position: absolute;
+    top: 110px;
+    left: 370px;
+    width: 80%; /* 使用百分比宽度 */
+    max-width: 800px; /* 最大宽度 */
+    min-width: 800px; /* 最小宽度，可以防止在小屏幕上过小 */
+    padding: 15px 20px; /* 内边距 */
+    font-size: 18px;
+    border: none;
+    border-radius: 25px; /* 圆角 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: transparent; /* 背景色 */
+}
+
+.search-button {
+    position: absolute;
+    top: 112px;
+    left: 1120px;
+    background: none; /* 去除背景 */
+    border: none; /* 去除边框 */
+    padding: 10px; /* 设置按钮内边距 */
+    display: flex; /* 使用 Flexbox */
+    justify-content: center; /* 水平居中 */
+    border-radius: 0 25px 25px 0; /* 右侧圆角 */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.icon {
+    width: 25px; /* 图标的宽度 */
+    height: 25px; /* 图标的高度 */
+}
+
+.search-button:hover {
+    background-color: transparent; /* 悬停效果 */
+}
+
+
+.video-slider {
+    position: absolute;
+    top: 20px;
+    left: 370px;
+    width: 850px; /* 设置滑动框的宽度为1000px */
+    height: 550px; /* 设置滑动框的高度 */
+    overflow-y: auto; /* 允许垂直滚动 */
+    border: none;
+    margin-top: 10%; /* 上边距 */
+    background-color: transparent; /* 设置背景为透明 */
+    display: none;
+    flex-wrap: wrap; /* 允许换行 */
+    gap: 10px; /* 项目之间的间距 */
+    flex-direction: row; /* 默认水平排列 */
+}
+.video-item {
+    width: 100%;
+    max-width: 800px;
+    height: 40px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 18px;
+    border: black solid 1px;
+}
+
+.video-item:hover {
+    transform: translateX(20px);
+}
+
+::-webkit-scrollbar{
+    background-color: transparent;
+}
+
+.search-guide {
+    position: absolute; /* 相对定位以便包含 Tooltip */
+    top: 115px;
+    left: 200px;
+    display: flex; /* 使用 Flexbox */
+    cursor: pointer;       /* 鼠标悬浮时显示光标为手型 */
+    font-size: 18px;
+    border-radius: 25px; /* 圆角 */
+    border: none;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip {
+    visibility: hidden;    /* 默认隐藏提示框 */
+    width: 180px;          /* 提示框宽度 */
+    background-color: #555; /* 提示框背景色 */
+    color: #fff;           /* 提示框字体颜色 */
+    font-size: 18px;
+    text-align: center;    /* 文本居中 */
+    border-radius: 5px;     /* 圆角效果 */
+    padding: 5px;          /* 内边距 */
+    position: absolute;     /* 绝对定位 */
+    z-index: 1;            /* 提升层级 */
+    top: 100%;          /* 在元素下方显示 */
+    left: 50%;             /* 居中显示 */
+    margin-left: -90px;    /* 调整位置 */
+    opacity: 0;            /* 初始透明度为0 */
+    transition: opacity 0.3s; /* 渐变效果 */
+}
+
+.search-guide:hover .tooltip {
+    visibility: visible;    /* 鼠标悬浮时显示提示框 */
+    opacity: 1;            /* 渐变为可见 */
+}
+
+
+

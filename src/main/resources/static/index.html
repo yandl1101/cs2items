@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2道具大全</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="search-box-container">
+        <form id="search-form" action="/yaku1t/videos" method="GET" style="display: flex; align-items: center;">
+            <input type="text" class="search-box" name="query" placeholder="CS2道具大全———yaku1t" required>
+            <button type="submit" class="search-button">
+                <img src="TablerSearch.png" alt="搜索" class="icon">
+            </button>
+        </form>
+        <div class="search-guide">
+            搜索指南
+            <span class="tooltip">
+                <br>Dust2：沙二<br/>
+                <br>Mirage：荒漠迷城<br/>
+                <br>Inferno：炼狱小镇<br/>
+                <br>Nuke：核子危机<br/>
+                <br>Vertigo：殒命大厦<br/>
+                <br>Ancient：远古遗迹<br/>
+                <br>Anubis：阿努比斯<br/>
+                <br>有英文单词全为大写<br/>
+            </span>
+        </div>
+
+        <div class="video-slider" style="display: none;">
+            <!-- 动态生成项目 -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // 使用 Ajax 请求视频数据
+    function fetchVideoData(query) {
+        // 通过传递的查询参数构建 API 路径
+        return fetch(`/yaku1t/videos?query=${encodeURIComponent(query)}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .catch(error => console.error('Error fetching video data:', error));
+    }
+
+    const videoSlider = document.querySelector('.video-slider');
+
+    // 处理搜索表单提交
+    document.getElementById('search-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // 阻止表单自动提交
+        const query = this.query.value; // 获取输入的搜索内容
+
+        // 清空之前的搜索结果
+        videoSlider.innerHTML = '';
+        videoSlider.style.display = 'none'; // 隐藏视频滑动框
+
+
+        // 发起搜索请求
+        fetchVideoData(query).then(items => {
+            if (items && Array.isArray(items) && items.length > 0) {
+                items.forEach(item => {
+                    const itemElement = document.createElement('button');
+                    itemElement.className = 'video-item';
+                    itemElement.textContent = item.name; // 假设每个 item 有 name 属性
+
+                    // 添加点击事件，跳转到视频的 URL
+                    itemElement.addEventListener('click', () => {
+                        window.open(item.url, '_blank'); // 在新标签页打开链接
+                    });
+
+                    videoSlider.appendChild(itemElement);
+                });
+                videoSlider.style.display = 'flex';
+            } else {
+                alert('没有找到该道具教学视频'); // 弹出提示框
+            }
+        });
+    });
+</script>
+</body>
+</html>
